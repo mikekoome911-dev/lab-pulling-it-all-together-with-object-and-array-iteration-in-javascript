@@ -114,3 +114,97 @@ function gameObject() {
         },
     };
 }
+//retrieve player information
+//1.points scored
+function numPointsScored(playerName) {
+    const data = gameObject();
+
+    for (const teamKey in data) {
+        const players = data[teamKey].players;
+        if (players[playerName]) {
+            return players[playerName].points;
+        }
+    }
+}
+//2.shoesize
+function shoeSize(playerName) {
+    const data = gameObject();
+
+    for (const teamKey in data) {
+        const players = data[teamKey].players;
+        if (players[playerName]) {
+            return players[playerName].shoe;
+        }
+    }
+}
+//team information
+//3.teamColour
+function teamColors(teamName) {
+    const data = gameObject();
+    for (const teamKey in data) {
+        const team = data[teamKey];
+        if (team.teamName === teamName){
+            return team.colors;
+        }
+    }
+}
+//4.teamnames
+function teamNames() {
+    const data = gameObject();
+    const names = [];
+    for (const teamKey in data){
+        names.push(data[teamKey].teamName);
+    }
+    return names;
+}
+//player numbers and stats
+//5.playerNumbers
+function playerNumbers(teamName) {
+    const data = gameObject();
+    const numbers = [];
+
+   for (const teamKey in data) {
+    const team = data[teamKey];
+
+    if (team.teamName === teamName) {
+        const players = team.players;
+        
+        for (const playerName in players) {
+            numbers.push(players[playerName].number)
+        }
+        return numbers;
+    }
+   }
+    }
+    //6.playerstats
+    function playerStats(playerName) {
+        const data = gameObject();
+
+    for (const teamKey in data) {
+        const players = data[teamKey].players;
+
+        if (players[playerName]) {
+            return players[playerName];
+        }
+    }
+}
+//bigShoeRebounds
+function bigShoeRebounds() {
+    const data = gameObject();
+    let largestShoeSize = 0;
+    let matchingRebounds = 0;
+
+    for (const teamKey in data) {
+        const players = data[teamKey].players;
+
+        for (const playerName in players) {
+            const player = players [playerName];
+
+            if (player.shoe > largestShoeSize) {
+                largestShoeSize = player.shoe;
+                matchingRebounds = player.rebounds;
+            }
+        }
+    }
+    return matchingRebounds;
+}
